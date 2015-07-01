@@ -7,10 +7,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using WeifenLuo.WinFormsUI.Docking;
 
 namespace RaptorServiceServer.Forms.Dockable
 {
-    public partial class frmToolbar : Form
+    public partial class frmToolbar : DockContent
     {
         public frmToolbar()
         {

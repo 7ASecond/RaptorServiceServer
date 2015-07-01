@@ -7,10 +7,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using WeifenLuo.WinFormsUI.Docking;
 
 namespace RaptorServiceServer.Forms.Dockable
 {
-    public partial class frmStreamingHost : Form
+    public partial class frmStreamingHost : DockContent
     {
         public frmStreamingHost()
         {
