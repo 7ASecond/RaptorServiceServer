@@ -1,6 +1,6 @@
-﻿namespace RaptorServiceServer
+﻿namespace RaptorServiceServer.Forms.Dockable
 {
-    partial class frmMain
+    partial class frmMenu
     {
         /// <summary>
         /// Required designer variable.
@@ -28,20 +28,11 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.SuspendLayout();
-            // 
-            // frmMain
-            // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.components = new System.ComponentModel.Container();
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(811, 526);
-            this.Name = "frmMain";
-            this.Text = "Form1";
-            this.ResumeLayout(false);
-
+            this.Text = "frmMenu";
         }
 
         #endregion
     }
 }
-

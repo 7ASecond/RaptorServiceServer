@@ -55,6 +55,42 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Forms\Dockable\frmDamoclesHost.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Dockable\frmDamoclesHost.Designer.cs">
+      <DependentUpon>frmDamoclesHost.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Dockable\frmHttpHost.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Dockable\frmHttpHost.Designer.cs">
+      <DependentUpon>frmHttpHost.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Dockable\frmMenu.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Dockable\frmMenu.Designer.cs">
+      <DependentUpon>frmMenu.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Dockable\frmStreamingHost.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Dockable\frmStreamingHost.Designer.cs">
+      <DependentUpon>frmStreamingHost.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Dockable\frmTCPHost.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Dockable\frmTCPHost.Designer.cs">
+      <DependentUpon>frmTCPHost.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Dockable\frmToolbar.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Dockable\frmToolbar.Designer.cs">
+      <DependentUpon>frmToolbar.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmMain.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -88,6 +124,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Forms\Dialogs\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
