@@ -102,6 +102,12 @@
     <EmbeddedResource Include="Forms\Dockable\frmDamoclesHost.resx">
       <DependentUpon>frmDamoclesHost.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Dockable\frmMenu.resx">
+      <DependentUpon>frmMenu.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Dockable\frmToolbar.resx">
+      <DependentUpon>frmToolbar.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmMain.resx">
       <DependentUpon>frmMain.cs</DependentUpon>
     </EmbeddedResource>
