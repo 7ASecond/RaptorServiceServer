@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -15,17 +16,31 @@ namespace RaptorServiceServer
     public partial class frmMain : Form
     {
 
+        private string myDocs = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+        private string appSettings = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "RaptorServer");
+        private string LayoutFile = Path.Combine(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "RaptorServer"), "layout.xml");
+
         private bool m_bSaveLayout = true;
         private DeserializeDockContent m_deserializeDockContent;
-        private frmToolbar toolbarForm;
-        private frmMenu menuForm;
-        private frmDamoclesHost damoclesHostForm;
-        private frmHttpHost httpHostForm;
-        private frmStreamingHost streamingHostForm;
-        private frmTCPHost tcpHostForm;
+        private frmToolbar toolbarForm = new frmToolbar();
+        private frmMenu menuForm = new frmMenu();
+        private frmDamoclesHost damoclesHostForm = new frmDamoclesHost();
+        private frmHttpHost httpHostForm = new frmHttpHost();
+        private frmStreamingHost streamingHostForm = new frmStreamingHost();
+        private frmTCPHost tcpHostForm = new frmTCPHost();
 
         public frmMain()
         {
+            if (!FirstRun())
+            {
+                if (File.Exists(LayoutFile))
+                    dockPanel.LoadFromXml(LayoutFile, m_deserializeDockContent);
+            }
+            else
+            {
+                AppSetup();
+            }
+
             InitializeComponent();
             m_deserializeDockContent = new DeserializeDockContent(GetContentFromPersistString);
         }
@@ -65,6 +80,52 @@ namespace RaptorServiceServer
             //    return dummyDoc;
             //}
             return null;
+        }
+
+        private void frmMain_Load(object sender, EventArgs e)
+        {
+           
+        }
+
+        private void AppSetup()
+        {
+
+            if (Directory.Exists(appSettings))
+            {
+                if (File.Exists(LayoutFile))
+                {
+                    DialogResult dr = MessageBox.Show("Layout File Already Exists\nDo you want to load it?", "Layout File Exists", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                    if (dr == DialogResult.Yes)
+                    {
+                        // Ok let's just use this Layout - so do nothing.
+                    }
+                    else
+                    {
+                        // Create a New Default Layout
+                        SaveDefaultLayout();
+                    }
+                }
+            }
+        }
+
+        private void SaveDefaultLayout()
+        {
+            throw new NotImplementedException();
+        }
+
+        private bool FirstRun()
+        {
+            if (string.IsNullOrEmpty(Properties.Settings.Default.LayoutPath)) return true;
+            return false;
+        }
+
+        private void frmMain_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            
+            if (m_bSaveLayout)
+                dockPanel.SaveAsXml(LayoutFile);
+            else if (File.Exists(LayoutFile))
+                File.Delete(LayoutFile);
         }
     }
 }
