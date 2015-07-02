@@ -31,18 +31,20 @@ namespace RaptorServiceServer
 
         public frmMain()
         {
+            InitializeComponent();
+
             if (!FirstRun())
             {
                 if (File.Exists(LayoutFile))
+                {
                     dockPanel.LoadFromXml(LayoutFile, m_deserializeDockContent);
+                    m_deserializeDockContent = new DeserializeDockContent(GetContentFromPersistString);
+                }
             }
             else
             {
                 AppSetup();
-            }
-
-            InitializeComponent();
-            m_deserializeDockContent = new DeserializeDockContent(GetContentFromPersistString);
+            }     
         }
 
         private IDockContent GetContentFromPersistString(string persistString)
@@ -105,17 +107,34 @@ namespace RaptorServiceServer
                         SaveDefaultLayout();
                     }
                 }
+                else
+                {
+                    SaveDefaultLayout();
+                    ShowDefaultLayout();
+                }
             }
+            else
+            {
+                Directory.CreateDirectory(appSettings);
+                ShowDefaultLayout();
+               
+            }
+        }
+
+        private void ShowDefaultLayout()
+        {
+            menuForm.Show(dockPanel, DockState.DockTop);
+            toolbarForm.Show(dockPanel, DockState.DockTop);
         }
 
         private void SaveDefaultLayout()
         {
-            throw new NotImplementedException();
+            dockPanel.SaveAsXml(LayoutFile);
         }
 
         private bool FirstRun()
         {
-            if (string.IsNullOrEmpty(Properties.Settings.Default.LayoutPath)) return true;
+            if (!File.Exists(LayoutFile)) return true;
             return false;
         }
 
